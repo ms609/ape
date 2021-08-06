@@ -8,13 +8,13 @@ on:
       - main
       - master
 
-name: revdep-check
+name: revdep-check-depends
 
 jobs:
   mem-check:
     runs-on: macOS-latest
 
-    name: revdepcheck, macOS, R release
+    name: revdepcheck depends, macOS, R release
 
     env:
       _R_CHECK_CRAN_INCOMING_: true # Seemingly not set by --as-cran
@@ -58,7 +58,8 @@ jobs:
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
-          revdepcheck::revdep_check(timeout = as.difftime(60, units = 'mins'), num_workers = 4)
+          revdepcheck::revdep_check(timeout = 60 * 10, num_workers = 8,
+                                    dependencies = "Depends")
           problems <- readLines('revdep/problems.md', warn = FALSE)
           if (length(problems) > 1) stop(paste0(problems, collapse= "\n"))
         shell: Rscript {0}
@@ -67,5 +68,5 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@main
         with:
-          name: revdep-results
+          name: revdep-depends-results
           path: revdep/*.md
