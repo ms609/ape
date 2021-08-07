@@ -58,7 +58,7 @@ jobs:
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
-          revdepcheck::revdep_check(timeout = 60 * 10, num_workers = 8,
+          revdepcheck::revdep_check(timeout = 60 * 15, num_workers = 3,
                                     dependencies = "Depends")
           problems <- readLines('revdep/problems.md', warn = FALSE)
           if (length(problems) > 1) stop(paste0(problems, collapse= "\n"))
