@@ -16,15 +16,15 @@ jobs:
   mem-check:
     runs-on: ubuntu-20.04
 
-    name: valgrind ${{ matrix.config.test }}, ubuntu, R release
+    name: valgrind ${{ matrix.config.testfile }}, ubuntu, R release
 
     strategy:
       fail-fast: false
        matrix:
         config:
-          - {test: 'tests'}
-          - {test: 'examples'}
-          - {test: 'vignettes'}
+          - {testfile: 'tests'}
+          - {testfile: 'examples'}
+          - {testfile: 'vignettes'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -76,6 +76,6 @@ jobs:
           R CMD INSTALL ape*.tar.gz
           cd ape
 
-      - name: valgrind - memcheck ${{ matrix.config.test }}
+      - name: valgrind - memcheck ${{ matrix.config.testfile }}
         run: |
-          R -d "valgrind --tool=memcheck --leak-check=full --error-exitcode=1" --vanilla < memcheck/${{ matrix.config.test }}.R
+          R -d "valgrind --tool=memcheck --leak-check=full --error-exitcode=1" --vanilla < memcheck/${{ matrix.config.testfile }}.R
