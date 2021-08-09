@@ -8,13 +8,21 @@ on:
       - main
       - master
 
-name: revdep-check-imports
+name: revdep-check
 
 jobs:
   mem-check:
     runs-on: macOS-latest
 
-    name: revdepcheck imports, macOS, R release
+    name: revdepcheck ${{ matrix.config.deps }}, macOS, R release
+
+    strategy:
+      fail-fast: false
+       matrix:
+        config:
+          - {deps: 'Depends'}
+          - {deps: 'Suggests'}
+          - {deps: 'Imports'}
 
     env:
       _R_CHECK_CRAN_INCOMING_: true # Seemingly not set by --as-cran
@@ -54,12 +62,12 @@ jobs:
           remotes::install_deps(dependencies = 'soft')
         shell: Rscript {0}
 
-      - name: Check reverse dependencies
+      - name: Check reverse dependencies: ${{ matrix.config.deps }}
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
-        run: |          
+        run: |
           revdepcheck::revdep_check(timeout = 60 * 15, num_workers = 3,
-                                    dependencies = "Imports")
+                                    dependencies = "${{ matrix.config.deps }}")
           problems <- readLines('revdep/problems.md', warn = FALSE)
           if (length(problems) > 1) stop(paste0(problems, collapse= "\n"))
         shell: Rscript {0}
@@ -68,5 +76,5 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@main
         with:
-          name: revdep-imports-results
+          name: revdep-${{ matrix.config.deps }}-results
           path: revdep/*.md
