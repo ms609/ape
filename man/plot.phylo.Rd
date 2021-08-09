@@ -8,15 +8,16 @@
 }
 \usage{
 \method{plot}{phylo}(x, type = "phylogram", use.edge.length = TRUE,
-    node.pos = NULL, show.tip.label = TRUE, show.node.label = FALSE,
-    edge.color = par("fg"), edge.width = par("lwd"),
-    edge.lty = par("lty"), font = 3, cex = par("cex"),
-    adj = NULL, srt = 0, no.margin = FALSE,
-    root.edge = FALSE, label.offset = 0, underscore = FALSE,
-    x.lim = NULL, y.lim = NULL, direction = "rightwards",
-    lab4ut = NULL, tip.color = par("col"), plot = TRUE,
-    rotate.tree = 0, open.angle = 0, node.depth = 1,
-    align.tip.label = FALSE, ...)
+                     node.pos = NULL, show.tip.label = TRUE,
+                     show.node.label = FALSE, edge.color = NULL, edge.width
+                     = NULL, edge.lty = NULL, node.color = NULL, node.width
+                     = NULL, node.lty = NULL, font = 3, cex = par("cex"),
+                     adj = NULL, srt = 0, no.margin = FALSE, root.edge =
+                     FALSE, label.offset = 0, underscore = FALSE, x.lim =
+                     NULL, y.lim = NULL, direction = "rightwards", lab4ut =
+                     NULL, tip.color = par("col"), plot = TRUE, rotate.tree
+                     = 0, open.angle = 0, node.depth = 1, align.tip.label =
+                     FALSE, ...)
 \method{plot}{multiPhylo}(x, layout = 1, ...)
 }
 \arguments{
