@@ -1,8 +1,10 @@
 test_that("Random coalescent trees", {
   set.seed(0)
-  BOUND <- qnorm(0.995)
+  bound_p <- 0.995
+  BOUND <- qnorm(bound_p)
   N <- 100
   tree.sizes <- c(5, 10, 20, 50, 75, 100)
+  falsePositiveRate <- 0.01
   res <- numeric()
   for (i in 1:200) {
     for (n in tree.sizes) {
@@ -18,5 +20,5 @@ test_that("Random coalescent trees", {
     }
   }
   tab <- tabulate((abs(res) > BOUND) + 1L, 2L)[2]
-  expect_lt(tab, length(res) / 100)
+  expect_lte(pbinom(tab, length(res), 1 - bound_p), 1 - falsePositiveRate)
 })

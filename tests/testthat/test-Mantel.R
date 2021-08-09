@@ -19,5 +19,5 @@ test_that("Type I error rate of the Mantel test", {
     mantel.test(ma, mb)$p
   })
   expect_false(anyNA(res))
-  expect_gt(pbinom(sum(res < 0.05), length(res), 0.05), falsePositiveRate)
+  expect_lte(pbinom(sum(res < 0.05), length(res), 0.05), 1 - falsePositiveRate)
 })
