@@ -22,8 +22,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: 'release', vignettes: '--no-build-vignettes --ignore-vignettes'}
-          - {os: macOS-latest, r: 'release', vignettes: '--no-build-vignettes", " --ignore-vignettes'}
+          - {os: windows-latest, r: 'release', vignettes: ', "--ignore-vignettes"), build_args = ("--no-bulid-vignettes"'}
+          - {os: macOS-latest, r: 'release', vignettes: ', "--ignore-vignettes"), build_args = ("--no-bulid-vignettes"'}
           - {os: ubuntu-20.04, r: '3.6.3', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
           - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
           - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
@@ -82,7 +82,7 @@ jobs:
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran", "${{ matrix.config.vignettes }}"),
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran" ${{ matrix.config.vignettes }}),
                                error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
