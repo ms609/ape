@@ -1,7 +1,8 @@
 test_that("Type I error rate of the Mantel test", {
   set.seed(0)
-  N = 100
+  N = 100# * 200
   n = 10
+  falsePositiveRate = 0.01
 
   rmat <- function(n) {
     x <- runif(n * (n - 1) / 2)
@@ -12,17 +13,11 @@ test_that("Type I error rate of the Mantel test", {
     m
   }
   res <- numeric()
-  for (i in 1:200) {
-    res <- c(res, replicate(N, {
-      ma <- rmat(n)
-      mb <- rmat(n)
-      mantel.test(ma, mb)$p
-    }))
-    if (anyNA(res)) {
-      message("Missing values returned after", length(res), "simulations")
-      expect_true(FALSE)
-    }
-    nsig <- sum(res < 0.05)
-  }
-  expect_lt(nsig / length(res), 0.05)
+  res <- replicate(N, {
+    ma <- rmat(n)
+    mb <- rmat(n)
+    mantel.test(ma, mb)$p
+  })
+  expect_false(anyNA(res))
+  expect_gt(pbinom(sum(res < 0.05), length(res), 0.05), falsePositiveRate)
 })
