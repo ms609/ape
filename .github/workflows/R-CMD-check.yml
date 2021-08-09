@@ -67,7 +67,7 @@ jobs:
       - name: Install pdfLatex (macOS)
         if: runner.os == 'macOS'
         run: |
-          such brew install basictex
+          brew install basictex
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
