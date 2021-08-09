@@ -68,6 +68,7 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           brew install mactex
+          eval "$(/usr/libexec/path_helper)"
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
