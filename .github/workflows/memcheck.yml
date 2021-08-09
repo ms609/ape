@@ -41,7 +41,7 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@master
 
       - name: Install valgrind
-        run: sudo apt-get install valgrind texlive-latex-base texlive-styles-extra
+        run: sudo apt-get install valgrind texlive-latex-base texlive-latex-extra
 
       - name: Query dependencies
         run: |
