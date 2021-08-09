@@ -62,7 +62,7 @@ jobs:
           remotes::install_deps(dependencies = 'soft')
         shell: Rscript {0}
 
-      - name: Check reverse dependencies: ${{ matrix.config.deps }}
+      - name: Check reverse dependencies (${{ matrix.config.deps }})
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
