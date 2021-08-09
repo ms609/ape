@@ -1,6 +1,6 @@
 test_that("Type I error rate of the Mantel test", {
   set.seed(0)
-  N = 100# * 200
+  N = 100 * 200
   n = 10
   falsePositiveRate = 0.01
 
