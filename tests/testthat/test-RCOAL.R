@@ -1,4 +1,5 @@
 test_that("Random coalescent trees", {
+  set.seed(0)
   BOUND <- qnorm(0.995)
   N <- 100
   tree.sizes <- c(5, 10, 20, 50, 75, 100)

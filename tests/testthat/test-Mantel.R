@@ -1,4 +1,5 @@
 test_that("Type I error rate of the Mantel test", {
+  set.seed(0)
   N = 100
   n = 10
 
