@@ -1,5 +1,5 @@
 test_that("Random coalescent trees", {
-  BOUND <- qnorm(0.9995)
+  BOUND <- qnorm(0.995)
   N <- 100
   tree.sizes <- c(5, 10, 20, 50, 75, 100)
   res <- numeric()
@@ -15,7 +15,7 @@ test_that("Random coalescent trees", {
       message("Missing values returned after", length(res), "simulations")
       expect_true(FALSE)
     }
-    tab <- tabulate((abs(res) > BOUND) + 1L, 2L)[2]
-    expect_lt(tab, length(res) / 100)
   }
+  tab <- tabulate((abs(res) > BOUND) + 1L, 2L)[2]
+  expect_lt(tab, length(res) / 100)
 })
