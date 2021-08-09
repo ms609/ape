@@ -20,11 +20,11 @@ jobs:
 
     strategy:
       fail-fast: false
-        matrix:
-          config:
-            - {testfile: 'tests'}
-            - {testfile: 'examples'}
-            - {testfile: 'vignettes'}
+      matrix:
+        config:
+          - {testfile: 'tests'}
+          - {testfile: 'examples'}
+          - {testfile: 'vignettes'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
