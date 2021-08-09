@@ -50,7 +50,16 @@
     the plotted phylogeny. These are taken to be in the same order than
     the component \code{edge} of \code{phy}. If fewer widths are given
     than the length of \code{edge}, then these are recycled.}
-  \item{edge.lty}{same than the previous argument but for line types;
+  \item{edge.lty}{same as the previous argument but for line types;
+    1: plain, 2: dashed, 3: dotted, 4: dotdash, 5: longdash, 6: twodash.}
+  \item{node.color}{a vector of mode character giving the colours used
+    to draw the perpendicular lines associated with each node of the
+    plotted phylogeny. These are taken to be
+    in the same order than the component \code{node} of \code{phy}. If
+    fewer colours are given than the length of \code{node}, then the
+    colours are recycled.}
+  \item{node.width}{as the previous argument, but for line widths.}
+  \item{node.lty}{as the previous argument, but for line types;
     1: plain, 2: dashed, 3: dotted, 4: dotdash, 5: longdash, 6: twodash.}
   \item{font}{an integer specifying the type of font for the labels: 1
     (plain text), 2 (bold), 3 (italic, the default), or 4 (bold
