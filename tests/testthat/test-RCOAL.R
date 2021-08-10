@@ -16,5 +16,14 @@ test_that("Random coalescent trees", {
       failures <- failures + sum(abs((mean(x) - expected.mean) * sqrt(N/expected.var)) > BOUND)
     }
   }
-  expect_lte(pbinom(failures, reps * length(tree.sizes) * N, 1 - bound_p), bound_p)
+  n <- reps * length(tree.sizes) * N
+  q <- bound_p
+  p <- 1 - q
+  expected_fails <- n * p
+  fails_var <- n * p * q
+  fails_sd <- sqrt(fails_var)
+  # 99.5% chance of lying within 3sd of mean
+  fails_bound <- 3 * fails_sd
+  expect_lt(failures, expected_fails + fails_bound)
+  expect_gt(failures, expected_fails - fails_bound)
 })
