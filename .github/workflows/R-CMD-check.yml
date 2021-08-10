@@ -67,7 +67,7 @@ jobs:
       - name: Install system dependencies
         if: runner.os == 'Linux'
         run: |
-          sudo apt-get install texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+          sudo apt-get install ghostscript texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
           while read -r cmd
           do
             eval sudo $cmd
